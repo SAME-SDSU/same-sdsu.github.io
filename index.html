@@ -4,20 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SAME@SDSU</title>
+
   <style>
     :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --card2:#f0f2f7;
+      --text:#0f172a;
+      --muted:#475569;
+      --accent:#2563eb;
+      --border: rgba(15,23,42,.12);
+      --shadow: 0 14px 36px rgba(15,23,42,.10);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    html[data-theme="dark"]{
       --bg:#0e0f12;
       --card:#15171c;
       --card2:#111318;
       --text:#f2f4f7;
       --muted:#b5bcc7;
       --accent:#4ba3ff;
-      --border:rgba(255,255,255,.10);
+      --border: rgba(255,255,255,.10);
       --shadow: 0 12px 32px rgba(0,0,0,.50);
-      --radius: 18px;
-      --max: 1100px;
     }
+
     *{box-sizing:border-box}
+
+    html, body, .card, header, footer, .btn, .pill, .switch, .thumb{
+      transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -25,16 +43,22 @@
       color:var(--text);
       line-height:1.45;
     }
+
     a{color:var(--accent); text-decoration:none}
-    a:hover{color:var(--accent); opacity:.75; text-decoration:underline}
+    a:hover{opacity:.8; text-decoration:underline}
+
     header{
       position: sticky;
       top:0;
       z-index:10;
       backdrop-filter: blur(10px);
-      background: rgba(14,15,18,.72);
+      background: rgba(246,247,251,.82);
       border-bottom: 1px solid var(--border);
     }
+    html[data-theme="dark"] header{
+      background: rgba(14,15,18,.72);
+    }
+
     .nav{
       max-width: var(--max);
       margin: 0 auto;
@@ -44,11 +68,13 @@
       justify-content:space-between;
       gap:16px;
     }
+
     .brand{
       display:flex; align-items:center; gap:10px;
       font-weight:800;
       letter-spacing:.3px;
     }
+
     .logo{
       width:34px; height:34px; border-radius:12px;
       background: none;
@@ -56,98 +82,183 @@
       align-items: center;
       justify-content: center;
       box-shadow: var(--shadow);
-    }
-    .logo svg{
-      width:20px; height:20px;
-      fill: var(--accent);
+      overflow:hidden;
     }
     .logo img{
       width:100%; height:100%;
       object-fit: contain;
     }
+
     nav a{
       margin-left:14px;
       font-weight:600;
       color:var(--muted);
     }
     nav a:hover{color:var(--text)}
+
+    .theme-toggle{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .theme-label{
+      font-weight:700;
+      color: var(--muted);
+      font-size: 14px;
+      white-space:nowrap;
+    }
+    .switch{
+      width: 46px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.06);
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      display:inline-flex;
+      align-items:center;
+      justify-content:flex-start;
+      box-shadow: 0 10px 22px rgba(0,0,0,.08);
+    }
+    html[data-theme="dark"] .switch{
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 10px 22px rgba(0,0,0,.35);
+    }
+    .thumb{
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      position:absolute;
+      left: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: left .2s ease, background-color .25s ease, border-color .25s ease;
+      box-shadow: 0 8px 16px rgba(0,0,0,.10);
+    }
+    html[data-theme="dark"] .thumb{
+      left: 21px;
+      box-shadow: 0 10px 20px rgba(0,0,0,.45);
+    }
+    .switch:focus-visible{
+      outline: 2px solid rgba(37,99,235,.45);
+      outline-offset: 3px;
+    }
+    html[data-theme="dark"] .switch:focus-visible{
+      outline: 2px solid rgba(75,163,255,.55);
+    }
+
     main{max-width:var(--max); margin:0 auto; padding: 28px 18px 60px;}
     section{padding: 26px 0;}
+
     .section-title{
       font-size: 28px;
       margin: 0 0 14px;
       letter-spacing:.2px;
       text-align: center;
     }
+
     .section-sub{
       margin: 0 0 18px;
       color: var(--muted);
       max-width: none;
       text-align: center;
     }
+
     .grid-3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:14px;
     }
+
     .grid-events{
       display:grid;
       grid-template-columns: 1.2fr .9fr 1fr;
       gap:14px;
       align-items:stretch;
     }
+
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      background: linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,.92));
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 16px;
       overflow:hidden;
     }
+    html[data-theme="dark"] .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+
     .card h3{margin: 0 0 10px; font-size:18px}
     .card p{margin:0 0 10px; color:var(--muted)}
+
     .pill{
       display:inline-block;
       padding:6px 10px;
       border-radius:999px;
       border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
+      background: rgba(0,0,0,.04);
       color: var(--muted);
       font-size: 13px;
+      font-weight:700;
     }
+    html[data-theme="dark"] .pill{
+      background: rgba(255,255,255,.04);
+    }
+
     .calendar{
       width:100%;
       aspect-ratio: 4/3;
-      border:0;
+      border:1px solid var(--border);
       border-radius: 14px;
       overflow:hidden;
-      background: #0e0f12;
-      filter: invert(1);
+      background: #ffffff;
+      filter: none;
     }
+    html[data-theme="dark"] .calendar{
+      background: #0e0f12;
+      filter: invert(1) hue-rotate(180deg) saturate(.95) contrast(.95);
+    }
+
     .event-title{font-size:18px; margin:10px 0 6px}
     .event-meta{color:var(--muted); font-size:14px}
+
     .btn{
       display:inline-block;
       margin-top:12px;
       padding:10px 12px;
       border-radius: 12px;
       border:1px solid var(--border);
-      background: rgba(255,255,255,.08);
+      background: rgba(0,0,0,.06);
       color: var(--text);
-      font-weight:700;
+      font-weight:800;
+    }
+    html[data-theme="dark"] .btn{
+      background: rgba(255,255,255,.08);
     }
     .btn:hover{
-      background: rgba(255,255,255,.14);
+      background: rgba(0,0,0,.10);
       text-decoration:none;
     }
+    html[data-theme="dark"] .btn:hover{
+      background: rgba(255,255,255,.14);
+    }
+
     .slideshow{
       position:relative;
       border-radius: 14px;
       overflow:hidden;
       border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
+      background: rgba(0,0,0,.03);
       min-height: 260px;
     }
+    html[data-theme="dark"] .slideshow{
+      background: rgba(255,255,255,.04);
+    }
+
     .slide{
       position:absolute; inset:0;
       display:flex; align-items:center; justify-content:center;
@@ -155,11 +266,13 @@
       transition: opacity .6s ease;
     }
     .slide.active{opacity:1}
+
     .slide img{
       width:100%; height:100%;
       object-fit: cover;
       display:block;
     }
+
     .slide-controls{
       position:absolute;
       left:12px; right:12px; bottom:12px;
@@ -167,25 +280,41 @@
       gap:10px;
       pointer-events:none;
     }
+
     .control{
       pointer-events:auto;
       border:1px solid var(--border);
-      background: rgba(14,15,18,.72);
+      background: rgba(255,255,255,.80);
       color: var(--text);
       padding:8px 10px;
       border-radius: 12px;
-      font-weight:700;
+      font-weight:800;
       cursor:pointer;
+      box-shadow: 0 8px 18px rgba(15,23,42,.10);
     }
+    html[data-theme="dark"] .control{
+      background: rgba(14,15,18,.72);
+      box-shadow: 0 10px 20px rgba(0,0,0,.45);
+    }
+    .control:hover{ background: rgba(255,255,255,.92); }
+    html[data-theme="dark"] .control:hover{ background: rgba(14,15,18,.82); }
+
     .dots{display:flex; gap:6px; justify-content:center; flex:1}
+
     .dot{
       width:8px; height:8px; border-radius:999px;
-      background: rgba(255,255,255,.22);
-      border:1px solid rgba(255,255,255,.18);
+      background: rgba(15,23,42,.20);
+      border:1px solid rgba(15,23,42,.18);
       cursor:pointer;
       pointer-events:auto;
     }
-    .dot.active{background: rgba(255,255,255,.92)}
+    html[data-theme="dark"] .dot{
+      background: rgba(255,255,255,.22);
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .dot.active{background: rgba(37,99,235,.95); border-color: rgba(37,99,235,.45)}
+    html[data-theme="dark"] .dot.active{background: rgba(75,163,255,.92); border-color: rgba(75,163,255,.45)}
+
     .officers{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -199,15 +328,22 @@
     .person{
       display:flex; gap:12px; align-items:flex-start;
     }
+
     .avatar{
       width:44px; height:44px;
       border-radius: 14px;
-      background: rgba(255,255,255,.08);
-      border:1px solid var(--border);
+      background: rgba(37,99,235,.10);
+      border:1px solid rgba(37,99,235,.18);
       flex:0 0 auto;
     }
-    .role{font-weight:800}
+    html[data-theme="dark"] .avatar{
+      background: rgba(75,163,255,.12);
+      border-color: rgba(75,163,255,.22);
+    }
+
+    .role{font-weight:900}
     .name{color:var(--muted)}
+
     footer{
       max-width: var(--max);
       margin: 0 auto;
@@ -215,14 +351,16 @@
       color: var(--muted);
       border-top: 1px solid var(--border);
     }
+
     @media (max-width: 900px){
       .grid-3{grid-template-columns:1fr}
       .grid-events{grid-template-columns:1fr}
       .officers{grid-template-columns:1fr}
       nav{display:none}
-
       .center-last{ grid-column: auto; }
+      .theme-label{display:none;}
     }
+
     .icon{
       width:16px; height:16px;
       margin-right:8px;
@@ -237,16 +375,24 @@
   <div class="nav">
     <div class="brand">
       <div class="logo" aria-hidden="true">
-        <img src="images/same.png" alt="">
+        <img id="logoImg" src="images/same_black.png" alt="">
       </div>
       <div>Society of American Military Engineers</div>
     </div>
+
     <nav>
       <a href="#welcome">About Us</a>
       <a href="#events">Events</a>
       <a href="#officers">Officers</a>
       <a href="#contact">Contact</a>
     </nav>
+
+    <div class="theme-toggle" aria-label="Theme toggle">
+      <span class="theme-label" id="themeLabel">Light</span>
+      <button class="switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode">
+        <span class="thumb" aria-hidden="true"></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -279,9 +425,12 @@
         <h3>Get Involved!</h3>
         <p class="event-meta">The best way to get involved is to join our Discord for the most up-to-date announcements, and attend our meetings, socials, and events.</p>
         <p style="margin-bottom:8px;">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg> <a href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener">Discord</a><br>
-          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> <a href="https://www.instagram.com/same.sdsu/" target="_blank" rel="noopener">Instagram</a><br>
-          <svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> <a href="https://linktr.ee/samesdsu" target="_blank" rel="noopener">Linktree</a><br>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
+          <a href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener">Discord</a><br>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <a href="https://www.instagram.com/same.sdsu/" target="_blank" rel="noopener">Instagram</a><br>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          <a href="https://linktr.ee/samesdsu" target="_blank" rel="noopener">Linktree</a><br>
         </p>
         <br><br>
         <p class="event-meta">We are open to all majors and backgrounds.</p>
@@ -296,13 +445,11 @@
     <div class="grid-events">
       <div class="card">
         <h3>Google Calendar</h3>
-
         <iframe
           class="calendar"
           title="SAME at SDSU Google Calendar"
           src="https://calendar.google.com/calendar/embed?src=sdsusame.ig@gmail.com"
         ></iframe>
-
       </div>
 
       <div class="card">
@@ -429,10 +576,10 @@
   </section>
 
   <section id="contact">
-    <h2 class="section-title">Contact</h2> 
+    <h2 class="section-title">Contact</h2>
     <div class="card" style="text-align: center;">
       <div>
-        <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.077 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
         <a href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener">Discord</a>
         &nbsp;•&nbsp;
 
@@ -457,6 +604,7 @@
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+
   const slides = Array.from(document.querySelectorAll(".slide"));
   const dotsWrap = document.getElementById("dots");
   let idx = 0;
@@ -494,6 +642,31 @@
 
   renderDots();
   restart();
+
+  const root = document.documentElement;
+  const toggle = document.getElementById("themeToggle");
+  const label = document.getElementById("themeLabel");
+  const logoImg = document.getElementById("logoImg");
+  const logoLightSrc = "images/same_black.png";
+  const logoDarkSrc = "images/same_white.png";
+
+  function setTheme(theme){
+    root.setAttribute("data-theme", theme);
+    const isDark = theme === "dark";
+    toggle.setAttribute("aria-checked", String(isDark));
+    label.textContent = isDark ? "Dark" : "Light";
+    localStorage.setItem("theme", theme);
+    if (logoImg) logoImg.src = isDark ? logoDarkSrc : logoLightSrc;
+  }
+
+  const saved = localStorage.getItem("theme");
+  const systemPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  setTheme(saved ? saved : (systemPrefersDark ? "dark" : "light"));
+
+  toggle.addEventListener("click", () => {
+    const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    setTheme(current === "dark" ? "light" : "dark");
+  });
 </script>
 </body>
 </html>
