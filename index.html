@@ -44,6 +44,12 @@
       line-height:1.45;
     }
 
+    body.dragging-cards,
+    body.dragging-cards *{
+      user-select:none;
+      -webkit-user-select:none;
+    }
+
     a{color:var(--accent); text-decoration:none}
     a:hover{opacity:.8; text-decoration:underline}
 
@@ -167,6 +173,13 @@
       text-align: center;
     }
 
+    .drag-note{
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      margin: -4px 0 16px;
+    }
+
     .grid-3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -187,9 +200,34 @@
       box-shadow: var(--shadow);
       padding: 16px;
       overflow:hidden;
+      cursor: grab;
+      touch-action: none;
+      position: relative;
+      z-index: 1;
+      will-change: transform;
+      transition:
+        transform .12s ease-out,
+        background-color .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
     }
     html[data-theme="dark"] .card{
       background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+
+    .card.dragging{
+      cursor: grabbing;
+      z-index: 999;
+      box-shadow: 0 24px 52px rgba(15,23,42,.18);
+      transition:
+        background-color .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+    }
+    html[data-theme="dark"] .card.dragging{
+      box-shadow: 0 24px 52px rgba(0,0,0,.60);
     }
 
     .card h3{margin: 0 0 10px; font-size:18px}
@@ -337,8 +375,6 @@
       flex:0 0 auto;
       overflow:hidden;
       background: rgba(37,99,235,.10);
-      /*border-color: rgba(255, 255, 255, 0.3);
-      border: 2px solid rgba(255, 255, 255, 0.699); */
     }
 
     .avatar img{
@@ -374,6 +410,10 @@
       margin-right:8px;
       vertical-align:middle;
       fill:var(--accent);
+      stroke:var(--accent);
+      stroke-width:1.8;
+      stroke-linecap:round;
+      stroke-linejoin:round;
     }
   </style>
 </head>
@@ -433,7 +473,7 @@
         <h3>Get Involved!</h3>
         <p class="event-meta">The best way to get involved is to join our Discord for the most up-to-date announcements, and attend our meetings, socials, and events.</p>
         <p style="margin-bottom:8px;">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.077 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
           <a href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener">Discord</a><br>
           <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           <a href="https://www.instagram.com/same.sdsu/" target="_blank" rel="noopener">Instagram</a><br>
@@ -461,7 +501,7 @@
       </div>
 
       <div class="card">
-        <h3>Next Event</h3> 
+        <h3>Next Event</h3>
         <div class="event-title">Bowling & Oggies</div>
         <!--
         <span class="pill">Social</span>
@@ -474,7 +514,6 @@
         <p style="margin-top:10px;">
           Join us for a fun evening of bowling at Aztec Lanes! Support our fundraiser by purchasing delicious Oggies Pizza at the Student Union!
         </p>
-        <!--<a class="btn" href="#" target="_blank" rel="noopener">Register Here!</a> -->
         <span class="btn" style="pointer-events: none; opacity: 0.6;">No Registration Needed</span>
       </div>
 
@@ -609,32 +648,31 @@
     </div>
   </section>
 
-<section id="contact">
-  <h2 class="section-title">Contact Information</h2>
-  <div class="card" style="text-align:center; max-width: 470px; margin: 0 auto;">
-    <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-items:center; margin: -4px 0 8px;">
-      <a class="btn" href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener" aria-label="Join our Discord">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.077 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
-        Discord
-      </a>
+  <section id="contact">
+    <h2 class="section-title">Contact Information</h2>
+    <div class="card" style="text-align:center; max-width: 470px; margin: 0 auto;">
+      <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-items:center; margin: -4px 0 8px;">
+        <a class="btn" href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener" aria-label="Join our Discord">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.077 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
+          Discord
+        </a>
 
-      <a class="btn" href="https://www.instagram.com/same.sdsu/" target="_blank" rel="noopener" aria-label="Visit our Instagram">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        Instagram
-      </a>
+        <a class="btn" href="https://www.instagram.com/same.sdsu/" target="_blank" rel="noopener" aria-label="Visit our Instagram">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
 
-      <a class="btn" href="https://linktr.ee/samesdsu" target="_blank" rel="noopener" aria-label="Open our Linktree">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-        Linktree
-      </a>
+        <a class="btn" href="https://linktr.ee/samesdsu" target="_blank" rel="noopener" aria-label="Open our Linktree">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          Linktree
+        </a>
+      </div>
+      <a href="https://forms.gle/4fsay3EvLQmtnhHN9" target="_blank" rel="noopener">Join Our Email Chain!</a>
+      <br>
+      <a href="mailto:nhurst3520@sdsu.edu">Email Us!</a>
     </div>
-        <a href="https://forms.gle/4fsay3EvLQmtnhHN9" target="_blank" rel="noopener">Join Our Email Chain!</a>
-        <br>
-        <a href="mailto:nhurst3520@sdsu.edu">Email Us!</a>
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <footer>
   © <span id="year"></span> SAME@SDSU
@@ -705,6 +743,76 @@
     const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
     setTheme(current === "dark" ? "light" : "dark");
   });
+
+  (function makeCardsDraggableSnapBack() {
+    const cards = Array.from(document.querySelectorAll(".card"));
+    const interactiveSelector = "a, button, input, textarea, select, iframe, .control, .dot";
+
+    cards.forEach((card) => {
+      let x = 0;
+      let y = 0;
+      let startX = 0;
+      let startY = 0;
+      let pointerId = null;
+      let moved = false;
+
+      card.addEventListener("pointerdown", (e) => {
+        if (e.button !== undefined && e.button !== 0) return;
+        if (e.target.closest(interactiveSelector)) return;
+
+        pointerId = e.pointerId;
+        startX = e.clientX - x;
+        startY = e.clientY - y;
+        moved = false;
+
+        card.classList.add("dragging");
+        document.body.classList.add("dragging-cards");
+        card.setPointerCapture(pointerId);
+      });
+
+      card.addEventListener("pointermove", (e) => {
+        if (pointerId !== e.pointerId) return;
+
+        const nextX = e.clientX - startX;
+        const nextY = e.clientY - startY;
+
+        if (Math.abs(nextX) > 3 || Math.abs(nextY) > 3) {
+          moved = true;
+        }
+
+        x = nextX;
+        y = nextY;
+        card.style.transform = `translate(${x}px, ${y}px)`;
+      });
+
+      card.addEventListener("pointerup", endDrag);
+      card.addEventListener("pointercancel", endDrag);
+
+      card.addEventListener("click", (e) => {
+        if (moved) {
+          e.preventDefault();
+          e.stopPropagation();
+          moved = false;
+        }
+      }, true);
+
+      function endDrag(e) {
+        if (pointerId !== e.pointerId) return;
+
+        try {
+          card.releasePointerCapture(pointerId);
+        } catch (_) {}
+
+        pointerId = null;
+        card.classList.remove("dragging");
+        document.body.classList.remove("dragging-cards");
+
+        x = 0;
+        y = 0;
+        card.style.transform = "translate(0px, 0px)";
+      }
+    });
+  })();
 </script>
 </body>
 </html>
