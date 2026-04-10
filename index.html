@@ -321,6 +321,27 @@
       gap: 14px;
     }
 
+    .officers-wrap{
+      display:grid;
+      gap:14px;
+    }
+
+    .archive-toggle{
+      justify-self:center;
+      margin-top: 2px;
+    }
+
+    .archive-panel[hidden]{
+      display:none;
+    }
+
+    .archive-meta{
+      margin: 2px 0 10px;
+      color: var(--muted);
+      text-align:center;
+      font-size: 14px;
+    }
+
     .center-last{
       grid-column: 2;
     }
@@ -502,108 +523,219 @@
 
   <section id="officers">
     <h2 class="section-title">Officers</h2>
-    <p class="section-sub">Meet the 2025-26 SAME@SDSU Team!</p>
+    <p class="section-sub">2026 - 2027 Team</p>
 
-    <div class="officers">
-      <div class="card person">
-        <div class="avatar">
-          <img src="images/officers/nico.png" alt="Nico Hurst">
+    <div class="officers-wrap">
+      <div class="officers">
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/nico.png" alt="Nico Hurst">
+          </div>
+          <div>
+            <div class="role">President</div>
+            <div class="name">Nico Hurst</div>
+            <div class="event-meta">Environmental Engineering</div>
+          </div>
         </div>
-        <div>
-          <div class="role">President</div>
-          <div class="name">Nico Hurst</div>
-          <div class="event-meta">Environmental Engineering</div>
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/matt.png" alt="Matt Garcia">
+          </div>
+          <div>
+            <div class="role">Vice President</div>
+            <div class="name">Matt Garcia</div>
+            <div class="event-meta">Civil Engineering</div>
+          </div>
         </div>
-      </div>
-      <div class="card person">
-        <div class="avatar">
-          <img src="images/officers/matt.png" alt="Matt Garcia">
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/hung.png" alt="Hung Hoang">
+          </div>
+          <div>
+            <div class="role">Treasurer</div>
+            <div class="name">Hung Hoang</div>
+            <div class="event-meta">Electrical Engineering</div>
+          </div>
         </div>
-        <div>
-          <div class="role">Vice President</div>
-          <div class="name">Matt Garcia</div>
-          <div class="event-meta">Civil Engineering</div>
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/tanish.png" alt="Tanish Gheewala">
+          </div>
+          <div>
+            <div class="role">Secretary</div>
+            <div class="name">Tanish Gheewala</div>
+            <div class="event-meta">Computer Engineering</div>
+          </div>
         </div>
-      </div>
-      <div class="card person">
-        <div class="avatar">
-          <img src="images/officers/hung.png" alt="Hung Hoang">
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/eric.png" alt="Eric Zezula">
+          </div>
+          <div>
+            <div class="role">Event Coordinator</div>
+            <div class="name">Eric Zezula</div>
+            <div class="event-meta">Aerospace Engineering</div>
+          </div>
         </div>
-        <div>
-          <div class="role">Treasurer</div>
-          <div class="name">Hung Hoang</div>
-          <div class="event-meta">Electrical Engineering</div>
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/aidan.png" alt="Aidan Betschart">
+          </div>
+          <div>
+            <div class="role">Fundraising Coordinator</div>
+            <div class="name">Aidan Betschart</div>
+            <div class="event-meta">Engineering</div>
+          </div>
         </div>
-      </div>
-      <div class="card person">
-        <div class="avatar">
-          <img src="images/officers/tanish.png" alt="Tanish Gheewala">
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/malia.png" alt="Malia Ishibashi">
+          </div>
+          <div>
+            <div class="role">Marketing Lead</div>
+            <div class="name">Malia Ishibashi</div>
+            <div class="event-meta">Environmental Engineering</div>
+          </div>
         </div>
-        <div>
-          <div class="role">Secretary</div>
-          <div class="name">Tanish Gheewala</div>
-          <div class="event-meta">Computer Engineering</div>
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/meilani.png" alt="Meilani Davidson">
+          </div>
+          <div>
+            <div class="role">Graphic Designer</div>
+            <div class="name">Meilani Davidson</div>
+            <div class="event-meta">Environmental Engineering</div>
+          </div>
         </div>
-      </div>
-      <div class="card person">
-        <div class="avatar">
-          <img src="images/officers/eric.png" alt="Eric Zezula">
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/corbin.png" alt="Corbin Paul">
+          </div>
+          <div>
+            <div class="role">Membership Chair</div>
+            <div class="name">Corbin Paul</div>
+            <div class="event-meta">Mechanical Engineering</div>
+          </div>
         </div>
-        <div>
-          <div class="role">Event Coordinator</div>
-          <div class="name">Eric Zezula</div>
-          <div class="event-meta">Aerospace Engineering</div>
-        </div>
-      </div>
-      <div class="card person">
-        <div class="avatar">
-          <img src="images/officers/aidan.png" alt="Aidan Betschart">
-        </div>
-        <div>
-          <div class="role">Fundraising Coordinator</div>
-          <div class="name">Aidan Betschart</div>
-          <div class="event-meta">Engineering</div>
-        </div>
-      </div>
-      <div class="card person">
-        <div class="avatar">
-          <img src="images/officers/malia.png" alt="Malia Ishibashi">
-        </div>
-        <div>
-          <div class="role">Marketing Lead</div>
-          <div class="name">Malia Ishibashi</div>
-          <div class="event-meta">Environmental Engineering</div>
-        </div>
-      </div>
-      <div class="card person">
-        <div class="avatar">
-          <img src="images/officers/meilani.png" alt="Meilani Davidson">
-        </div>
-        <div>
-          <div class="role">Graphic Designer</div>
-          <div class="name">Meilani Davidson</div>
-          <div class="event-meta">Environmental Engineering</div>
-        </div>
-      </div>
-      <div class="card person">
-        <div class="avatar">
-          <img src="images/officers/corbin.png" alt="Corbin Paul">
-        </div>
-        <div>
-          <div class="role">Membership Chair</div>
-          <div class="name">Corbin Paul</div>
-          <div class="event-meta">Mechanical Engineering</div>
+        <div class="card person center-last">
+          <div class="avatar">
+            <img src="images/officers/isaiah.png" alt="Isaiah Clemons">
+          </div>
+          <div>
+            <div class="role">CESC Representative</div>
+            <div class="name">Isaiah Clemons</div>
+            <div class="event-meta">Mechanical Engineering</div>
+          </div>
         </div>
       </div>
 
-      <div class="card person center-last">
-        <div class="avatar">
-          <img src="images/officers/isaiah.png" alt="Isaiah Clemons">
-        </div>
-        <div>
-          <div class="role">CESC Representative</div>
-          <div class="name">Isaiah Clemons</div>
-          <div class="event-meta">Mechanical Engineering</div>
+      <button class="btn archive-toggle" id="archiveToggleBtn" type="button" aria-expanded="false" aria-controls="archivePanel">
+        Show Past Officers
+      </button>
+
+      <div id="archivePanel" class="archive-panel" hidden>
+        <p class="archive-meta">2025 - 2026 Team</p>
+        <div class="officers">
+          <div class="card person">
+            <div class="avatar">
+              <img src="images/officers/nico.png" alt="Nico Hurst">
+            </div>
+            <div>
+              <div class="role">President</div>
+              <div class="name">Nico Hurst</div>
+              <div class="event-meta">Environmental Engineering</div>
+            </div>
+          </div>
+          <div class="card person">
+            <div class="avatar">
+              <img src="images/officers/matt.png" alt="Matt Garcia">
+            </div>
+            <div>
+              <div class="role">Vice President</div>
+              <div class="name">Matt Garcia</div>
+              <div class="event-meta">Civil Engineering</div>
+            </div>
+          </div>
+          <div class="card person">
+            <div class="avatar">
+              <img src="images/officers/hung.png" alt="Hung Hoang">
+            </div>
+            <div>
+              <div class="role">Treasurer</div>
+              <div class="name">Hung Hoang</div>
+              <div class="event-meta">Electrical Engineering</div>
+            </div>
+          </div>
+          <div class="card person">
+            <div class="avatar">
+              <img src="images/officers/tanish.png" alt="Tanish Gheewala">
+            </div>
+            <div>
+              <div class="role">Secretary</div>
+              <div class="name">Tanish Gheewala</div>
+              <div class="event-meta">Computer Engineering</div>
+            </div>
+          </div>
+          <div class="card person">
+            <div class="avatar">
+              <img src="images/officers/eric.png" alt="Eric Zezula">
+            </div>
+            <div>
+              <div class="role">Event Coordinator</div>
+              <div class="name">Eric Zezula</div>
+              <div class="event-meta">Aerospace Engineering</div>
+            </div>
+          </div>
+          <div class="card person">
+            <div class="avatar">
+              <img src="images/officers/aidan.png" alt="Aidan Betschart">
+            </div>
+            <div>
+              <div class="role">Fundraising Coordinator</div>
+              <div class="name">Aidan Betschart</div>
+              <div class="event-meta">Engineering</div>
+            </div>
+          </div>
+          <div class="card person">
+            <div class="avatar">
+              <img src="images/officers/malia.png" alt="Malia Ishibashi">
+            </div>
+            <div>
+              <div class="role">Marketing Lead</div>
+              <div class="name">Malia Ishibashi</div>
+              <div class="event-meta">Environmental Engineering</div>
+            </div>
+          </div>
+          <div class="card person">
+            <div class="avatar">
+              <img src="images/officers/meilani.png" alt="Meilani Davidson">
+            </div>
+            <div>
+              <div class="role">Graphic Designer</div>
+              <div class="name">Meilani Davidson</div>
+              <div class="event-meta">Environmental Engineering</div>
+            </div>
+          </div>
+          <div class="card person">
+            <div class="avatar">
+              <img src="images/officers/corbin.png" alt="Corbin Paul">
+            </div>
+            <div>
+              <div class="role">Membership Chair</div>
+              <div class="name">Corbin Paul</div>
+              <div class="event-meta">Mechanical Engineering</div>
+            </div>
+          </div>
+          <div class="card person center-last">
+            <div class="avatar">
+              <img src="images/officers/isaiah.png" alt="Isaiah Clemons">
+            </div>
+            <div>
+              <div class="role">CESC Representative</div>
+              <div class="name">Isaiah Clemons</div>
+              <div class="event-meta">Mechanical Engineering</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -705,5 +837,23 @@
     const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
     setTheme(current === "dark" ? "light" : "dark");
   });
+
+  const archiveToggleBtn = document.getElementById("archiveToggleBtn");
+  const archivePanel = document.getElementById("archivePanel");
+
+  if (archiveToggleBtn && archivePanel) {
+    archiveToggleBtn.addEventListener("click", () => {
+      const isHidden = archivePanel.hasAttribute("hidden");
+      if (isHidden) {
+        archivePanel.removeAttribute("hidden");
+        archiveToggleBtn.setAttribute("aria-expanded", "true");
+        archiveToggleBtn.textContent = "Hide Past Officers";
+      } else {
+        archivePanel.setAttribute("hidden", "");
+        archiveToggleBtn.setAttribute("aria-expanded", "false");
+        archiveToggleBtn.textContent = "Show Past Officers";
+      }
+    });
+  }
 </script>
 </body>
