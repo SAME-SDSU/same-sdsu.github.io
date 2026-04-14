@@ -106,10 +106,9 @@ Adding an officer photo:
 
 If a position is vacant, either omit the card or leave `src` pointing to a placeholder image.
 
----
 </details>
 
 ## Credits
-- Originally built & maintained by Tanish Gheewala.
-- Reach out to tanishgheewala@gmail.com for questions.
-- Copyright © 2026 SAME@SDSU.
+- Copyright: © 2026 SAME@SDSU.
+- Built & maintained by Tanish Gheewala.
+- Contact tanishgheewala@gmail.com for questions.
