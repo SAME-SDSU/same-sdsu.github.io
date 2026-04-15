@@ -74,8 +74,8 @@ Links appear in two locations: `Get Involved` and `Contact`. Find and update as 
 <summary>Updating Officers, Officer Photos, and Past Officer Archive</summary>
 
 There are two officer sections in `index.html`:
-- The Current team inside `<p class="section-sub">20XX – 20XX Team</p>`
-- The Past team archive inside `<div id="archivePanel">`, which expands when "Show Past Officers" is clicked
+- The Current team inside `<p class="section-sub">20XX – 20XX Team</p>`.
+- The Past team archive inside `<div id="archivePanel">`, which expands when "Show Past Officers" is clicked.
 
 At the start of each new term:
 1. Copy the entire current officers grid.
