@@ -1,7 +1,7 @@
 # SAME@SDSU Website
 The official website for the Society of American Military Engineers (SAME) student chapter at San Diego State University (SDSU) is live at https://same-sdsu.github.io/.
 
-## Overview & Features
+### Overview & Features
 This is a static HTML-based website. Features include:
 - Information & social media links.
 - Google Calendar integration.
@@ -11,13 +11,13 @@ This is a static HTML-based website. Features include:
 
 To view locally, clone this repository and double-click `index.html`.
 
-## Deploying Changes
+### Deploying Changes
 This site is designed to be pushed to GitHub and hosted by GitHub Pages.
 
 1. Push changes to the main branch.
 2. Changes will reflect automatically within a minute or two.
 
-## Updating the Site
+### Updating the Site
 
 <details> 
 <summary>Updating Next Event</summary>
@@ -108,7 +108,8 @@ If a position is vacant, either omit the card or leave `src` pointing to a place
 
 </details>
 
-## Credits
-- Copyright: © 2026 SAME@SDSU.
-- Built & maintained by Tanish Gheewala.
-- Contact tanishgheewala@gmail.com for questions.
+<br>
+
+---
+
+Built & maintained by Tanish Gheewala, contact tanishgheewala@gmail.com for questions.
