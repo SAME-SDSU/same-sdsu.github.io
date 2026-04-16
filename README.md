@@ -14,8 +14,7 @@ To view locally, clone this repository and double-click `index.html`.
 ### Deploying Changes
 This site is designed to be pushed to GitHub and hosted by GitHub Pages.
 
-1. Push changes to the main branch.
-2. Changes will reflect automatically within a minute or two.
+Push changes to the [main branch](https://github.com/SAME-SDSU/same-sdsu.github.io) and they will reflect automatically within 1-2 minutes.
 
 ### Updating the Site
 
@@ -110,6 +109,4 @@ If a position is vacant, either omit the card or leave `src` pointing to a place
 
 <br>
 
----
-
-Built & maintained by Tanish Gheewala, contact tanishgheewala@gmail.com for questions.
+Built & maintained by Tanish Gheewala. For questions, contact tanishgheewala@gmail.com.
