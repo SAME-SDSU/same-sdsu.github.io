@@ -15,6 +15,7 @@
       --accent:#2563eb;
       --border: rgba(15,23,42,.12);
       --shadow: 0 14px 36px rgba(15,23,42,.10);
+      --divider: rgba(15,23,42,.3);
       --radius: 18px;
       --max: 1100px;
     }
@@ -28,6 +29,7 @@
       --accent:#4ba3ff;
       --border: rgba(255,255,255,.10);
       --shadow: 0 12px 32px rgba(0,0,0,.50);
+      --divider: rgba(255,255,255,.3);
     }
 
     *{box-sizing:border-box}
@@ -192,7 +194,7 @@
       background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
     }
 
-    .card h3{margin: 0 0 10px; font-size:18px}
+    .card h3{margin: 0 0 10px; font-size:18px;}
     .card p{margin:0 0 10px; color:var(--muted)}
 
     .pill{
@@ -223,8 +225,17 @@
       filter: invert(1) hue-rotate(180deg) saturate(.95) contrast(.95);
     }
 
-    .event-title{font-size:21px; margin:10px 0px 12px}
+    .event-title{font-size:21px; margin:10px 0 12px;}
     .event-meta{color:var(--muted); font-size:14px}
+
+    .card.top-next-event{
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(180deg, rgba(37,99,235,.03), rgba(37,99,235,.01));
+      box-shadow: var(--shadow), inset 0 0 1px rgba(37,99,235,.1);
+    }
+    html[data-theme="dark"] .card.top-next-event{
+      box-shadow: var(--shadow), inset 0 0 1px rgba(75,163,255,.15);
+    }
 
     .btn{
       display:inline-block;
@@ -245,6 +256,97 @@
     }
     html[data-theme="dark"] .btn:hover{
       background: rgba(255,255,255,.14);
+    }
+
+    .top-next-event{
+      margin-bottom: 14px;
+    }
+
+    .next-event-hero{
+      display:grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(300px, .95fr);
+      gap:16px;
+      align-items:stretch;
+    }
+
+    .next-event-copy{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      min-width:0;
+      gap:8px;
+    }
+
+    .next-event-copy h3{
+      font-size:20px;
+      margin-bottom:8px;
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+
+    .next-event-copy .event-title{
+      font-size:30px;
+      line-height:1.12;
+      margin-top:4px;
+      margin-bottom:12px;
+      font-weight:800;
+      letter-spacing:0.25px;
+    }
+
+    .top-event-meta{
+      color:var(--muted);
+      font-size:18px;
+      font-weight:600;
+      text-align:center;
+    }
+
+    .next-event-copy p{
+      font-size:16px;
+      max-width:640px;
+      margin:0 auto;
+    }
+
+    .top-next-event-btn-wrap{
+      display:flex;
+      justify-content:center;
+      width:100%;
+    }
+
+    .top-next-event-btn-wrap .btn{
+      width:auto;
+      align-self:center;
+    }
+
+    .next-event-poster{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      aspect-ratio: 3 / 4;
+      max-width: 250px;
+      border:none;
+      border-radius:16px;
+      background: transparent;
+      overflow:hidden;
+      margin: 0 auto;
+    }
+    html[data-theme="dark"] .next-event-poster{
+      background: transparent;
+    }
+
+    .next-event-poster img{
+      width:100%;
+      height:100%;
+      object-fit: contain;
+      display:block;
+    }
+
+    .poster-placeholder{
+      padding:24px;
+      text-align:center;
+      color:var(--muted);
+      font-weight:600;
     }
 
     .slideshow{
@@ -358,8 +460,6 @@
       flex:0 0 auto;
       overflow:hidden;
       background: rgba(37,99,235,.10);
-      /*border-color: rgba(255, 255, 255, 0.3);
-      border: 2px solid rgba(255, 255, 255, 0.699); */
     }
 
     .avatar img{
@@ -384,10 +484,15 @@
     @media (max-width: 900px){
       .grid-3{grid-template-columns:1fr}
       .grid-events{grid-template-columns:1fr}
+      .next-event-hero{grid-template-columns:1fr}
       .officers{grid-template-columns:1fr}
       nav{display:none}
       .center-last{ grid-column: auto; }
       .theme-label{display:none;}
+      .next-event-copy .event-title{font-size:26px;}
+      .top-event-meta{font-size:18px;}
+      .next-event-copy p{font-size:16px;}
+      .next-event-poster{min-height:280px;}
     }
 
     .icon{
@@ -410,7 +515,7 @@
     </div>
 
     <nav>
-      <a href="#welcome">About Us</a>
+      <a href="#welcome">About</a>
       <a href="#events">Events</a>
       <a href="#officers">Officers</a>
       <a href="#contact">Contact</a>
@@ -454,7 +559,7 @@
         <h3>Get Involved!</h3>
         <p class="event-meta">The best way to get involved is to join our Discord for the most up-to-date announcements, and attend our meetings, socials, and events.</p>
         <p style="margin-bottom:8px;">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.077 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.076 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
           <a href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener">Discord</a><br>
           <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           <a href="https://www.instagram.com/same.sdsu/" target="_blank" rel="noopener">Instagram</a><br>
@@ -469,7 +574,41 @@
 
   <section id="events">
     <h2 class="section-title">Events Showcase</h2>
-    <p class="section-sub">View our past and upcoming events!</p>
+    <p class="section-sub">Ready to join us for an exciting event?</p>
+
+    <div class="card top-next-event">
+      <div class="next-event-hero">
+        <div class="next-event-copy">
+          <h3>Featured Event</h3>
+          
+          <div class="event-title">Company Career Crawl</div>
+          <div style="margin: 8px 0; height: 1px; background: var(--divider); width: 100%;"></div>
+          <div class="top-event-meta">Date: 5/14 • Time: 9AM-4PM • Kearny Mesa</div>
+          <div style="margin: 8px 0; height: 1px; background: var(--divider); width: 100%;"></div>
+
+          <p style="margin-top:10px;">
+            Join us for a career crawl of several engineering companies in the San Diego area right after finals week for a fantastic day of networking and opportunity! Please register for carpooling and headcount purposes. Feel free to invite your friends!
+            <br><br>
+            A tentative schedule (and list of companies) for the day can be found below.
+          </p>
+
+          <div class="top-next-event-btn-wrap">
+            <a class="btn" href="https://forms.gle/W7v59rhai1jat7SZ8" target="_blank" rel="noopener">Register Here!</a>
+          </div>
+          <!--<div class="top-next-event-btn-wrap"><span class="btn" style="pointer-events: none; opacity: 0.6;">No Registration Needed</span></div>-->
+        </div>
+
+        <div class="next-event-poster">
+          <img src="images/posters/career_crawl.jpeg" alt="Career Crawl event poster">
+          <!--
+          <div class="poster-placeholder">
+            Add your event poster here<br>
+            <span style="font-weight:400;">Example path: images/posters/example.jpg</span>
+          </div>
+          -->
+        </div>
+      </div>
+    </div>
 
     <div class="grid-events">
       <div class="card">
@@ -482,20 +621,20 @@
       </div>
 
       <div class="card">
-        <h3>Next Event</h3> 
-        <div class="event-title">Game Night</div>
+        <h3>Next Event</h3>
+        <div class="event-title">Finals Study Session</div>
         <!--
         <span class="pill">Social</span>
         <span class="pill">Bowling</span>
         <span class="pill">Fundraiser</span>
         -->
         <hr style="margin: 14px 0; border: none; border-top: 1px solid var(--border);">
-        <div class="event-meta">Date: 4/17 • Time: 5PM • Aztlan Suite</div>
+        <div class="event-meta">Date: 5/4 • Time: 6-8PM • 24/7 Study Area</div>
         <hr style="margin: 14px 0; border: none; border-top: 1px solid var(--border);">
         <p style="margin-top:10px;">
-          Join us for a fun evening of board games and socializing! Games, food & drinks will be provided, feel free to bring your own too!
+          Join us for a grouped study session to prepare for finals! Feel free to invite your friends.
         </p>
-        <a class="btn" href="https://urldefense.com/v3/__https://docs.google.com/forms/d/e/1FAIpQLSd2oRAgxTFHIXawiWZr_lhECBQcXl9trVYwC0FoQFpfPL8UJQ/viewform?usp=header__;!!H7yp__TR!bLIQbnaJFIG5cJWx7yrhrfwmCwceraTrgfmP_urzib9z8cAPDQBJVvB_VmXDOdlSRlqU9-ykckgAj3isv1a1czDpQlKS$" target="_blank" rel="noopener">Register Here!</a>
+        <a class="btn" href="https://forms.gle/GZUWbfjtk2DkVVXQ6" target="_blank" rel="noopener">Register Here!</a>
         <!--<span class="btn" style="pointer-events: none; opacity: 0.6;">No Registration Needed</span> -->
       </div>
 
@@ -519,7 +658,7 @@
           </div>
           <div class="slide">
             <img src="images/slideshow/6.png" alt="Bowling Social">
-          </div>          
+          </div>
           <div class="slide-controls">
             <button class="control" id="prevBtn" type="button">‹ Prev</button>
             <div class="dots" id="dots"></div>
@@ -755,7 +894,7 @@
   <div class="card" style="text-align:center; max-width: 470px; margin: 0 auto;">
     <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-items:center; margin: -4px 0 8px;">
       <a class="btn" href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener" aria-label="Join our Discord">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.077 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.077 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.076 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
         Discord
       </a>
 
@@ -771,7 +910,8 @@
     </div>
         <a href="https://forms.gle/4fsay3EvLQmtnhHN9" target="_blank" rel="noopener">Join Our Email Chain!</a>
         <br>
-        <a href="mailto:nhurst3520@sdsu.edu">Email Us!</a>
+        <a href="mailto:nhurst3520@sdsu.edu">
+        Email Us!
       </a>
     </div>
   </div>
@@ -868,3 +1008,4 @@
   }
 </script>
 </body>
+</html>

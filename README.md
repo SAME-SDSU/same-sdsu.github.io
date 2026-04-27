@@ -21,13 +21,15 @@ Push changes to the [main branch](https://github.com/SAME-SDSU/same-sdsu.github.
 <details> 
 <summary>Updating Next Event</summary>
 
-All event content is located in `index.html`. Search for `<h3>Next Event</h3>` to jump to the correct section.
+All event content is located in `index.html`. Search for `<h3>Next Event</h3>` to jump to the correct section. Update the two upcoming event sections as necessary.
 
 1. Update the title, date, and description:
 ```html
 <div class="event-title">Event Name</div>
-<div class="event-meta">Date: M/DD • Time: H:MMpm • Location: Venue</div>
-<p>Brief description of the event.</p>
+<hr style="margin: 0px 0; border: none; border-top: 1px solid var(--border);">
+<div class="top-event-meta">Date: M/DD • Time: H:MMpm • Location: Venue</div>
+<hr style="margin: 0px 0; border: none; border-top: 1px solid var(--border);">
+<p style="margin-top:10px;">Brief description of the event.</p>
 ```
 
 2. Toggle the registration button:
