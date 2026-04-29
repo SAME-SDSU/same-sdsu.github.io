@@ -230,6 +230,8 @@
 
     .card.top-next-event{
       border-left: 4px solid var(--accent);
+      border-right: 4px solid var(--accent);
+
       background: linear-gradient(180deg, rgba(37,99,235,.03), rgba(37,99,235,.01));
       box-shadow: var(--shadow), inset 0 0 1px rgba(37,99,235,.1);
     }
@@ -269,6 +271,10 @@
       align-items:stretch;
     }
 
+    .card.top-next-event .next-event-hero{
+      padding-left: 75px;
+    }
+
     .next-event-copy{
       display:flex;
       flex-direction:column;
@@ -289,8 +295,8 @@
     .next-event-copy .event-title{
       font-size:30px;
       line-height:1.12;
-      margin-top:4px;
-      margin-bottom:12px;
+      margin-top:-10px;
+      margin-bottom:6px;
       font-weight:800;
       letter-spacing:0.25px;
     }
@@ -317,6 +323,7 @@
     .top-next-event-btn-wrap .btn{
       width:auto;
       align-self:center;
+      border: 1px solid var(--accent);
     }
 
     .next-event-poster{
@@ -574,26 +581,25 @@
 
   <section id="events">
     <h2 class="section-title">Events Showcase</h2>
-    <p class="section-sub">Ready to join us for an exciting event?</p>
+    <p class="section-sub">Check out some of our upcoming and past events!</p>
 
     <div class="card top-next-event">
       <div class="next-event-hero">
         <div class="next-event-copy">
           <h3>Featured Event</h3>
-          
           <div class="event-title">Company Career Crawl</div>
-          <div style="margin: 8px 0; height: 1px; background: var(--divider); width: 100%;"></div>
           <div class="top-event-meta">Date: 5/14 • Time: 9AM-4PM • Kearny Mesa</div>
           <div style="margin: 8px 0; height: 1px; background: var(--divider); width: 100%;"></div>
-
           <p style="margin-top:10px;">
-            Join us for a career crawl of several engineering companies in the San Diego area right after finals week for a fantastic day of networking and opportunity! Please register for carpooling and headcount purposes. Feel free to invite your friends!
+            Explore networking opportunities with top engineering firms across San Diego! Join us for an exciting day of company visits right after finals week. Please register to help us coordinate carpooling.
             <br><br>
-            A tentative schedule (and list of companies) for the day can be found below.
+            A tentative schedule (and list of companies) can be found below.
           </p>
 
           <div class="top-next-event-btn-wrap">
-            <a class="btn" href="https://forms.gle/W7v59rhai1jat7SZ8" target="_blank" rel="noopener">Register Here!</a>
+            <a class="btn" href="https://forms.gle/W7v59rhai1jat7SZ8" target="_blank" rel="noopener">Register for the Event Here!</a>
+            <span style="display:inline-block; width:12px;" aria-hidden="true"></span>
+            <a class="btn" href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener" aria-label="Join our Discord">Join our Discord for Event Updates!</a>
           </div>
           <!--<div class="top-next-event-btn-wrap"><span class="btn" style="pointer-events: none; opacity: 0.6;">No Registration Needed</span></div>-->
         </div>
@@ -720,7 +726,7 @@
             <img src="images/officers/eric.png" alt="Eric Zezula">
           </div>
           <div>
-            <div class="role">Event Coordinator</div>
+            <div class="role">Events Chair</div>
             <div class="name">Eric Zezula</div>
             <div class="event-meta">Aerospace Engineering</div>
           </div>
@@ -730,7 +736,7 @@
             <img src="images/officers/aidan.png" alt="Aidan Betschart">
           </div>
           <div>
-            <div class="role">Fundraising Coordinator</div>
+            <div class="role">Fundraising Chair</div>
             <div class="name">Aidan Betschart</div>
             <div class="event-meta">Civil Engineering</div>
           </div>
@@ -740,7 +746,7 @@
             <img src="images/officers/malia.png" alt="Malia Ishibashi">
           </div>
           <div>
-            <div class="role">Marketing Lead</div>
+            <div class="role">Marketing Chair</div>
             <div class="name">Malia Ishibashi</div>
             <div class="event-meta">Environmental Engineering</div>
           </div>
@@ -750,7 +756,7 @@
             <img src="images/officers/meilani.png" alt="Meilani Davidson">
           </div>
           <div>
-            <div class="role">Graphic Designer</div>
+            <div class="role">Graphics Chair</div>
             <div class="name">Meilani Davidson</div>
             <div class="event-meta">Environmental Engineering</div>
           </div>
@@ -770,7 +776,7 @@
             <img src="images/officers/isaiah.png" alt="Isaiah Clemons">
           </div>
           <div>
-            <div class="role">CESC Representative</div>
+            <div class="role">Outreach Chair</div>
             <div class="name">Isaiah Clemons</div>
             <div class="event-meta">Mechanical Engineering</div>
           </div>
