@@ -111,4 +111,4 @@ If a position is vacant, either omit the card or leave `src` pointing to a place
 
 <br>
 
-Built & maintained by Tanish Gheewala. For questions, contact tanishgheewala@gmail.com.
+Built & maintained by SAME@SDSU. For questions, join our [Discord.](https://discord.gg/8VvfXDQz2u)
