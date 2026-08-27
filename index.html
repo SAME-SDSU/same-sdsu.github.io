@@ -65,7 +65,7 @@
     .nav{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 14px 18px;
+      padding: 8px 18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -178,9 +178,11 @@
 
     .grid-events{
       display:grid;
-      grid-template-columns: 1.2fr .9fr 1fr;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap:14px;
       align-items:stretch;
+      max-width: 1040px;
+      margin: 0 auto;
     }
 
     .card{
@@ -333,7 +335,7 @@
       align-items:center;
       justify-content:center;
       aspect-ratio: 3 / 4;
-      max-width: 250px;
+      width:100%;
       border:none;
       border-radius:16px;
       background: transparent;
@@ -606,7 +608,7 @@
       <div class="logo" aria-hidden="true">
         <img id="logoImg" src="images/same_color.png" alt="">
       </div>
-      <div>Society of American Military Engineers</div>
+      <div>SAME@SDSU Student Chapter</div>
     </div>
 
     <nav>
@@ -631,7 +633,7 @@
 
     <h1 class="section-title">Welcome to SAME@SDSU!</h1>
     <p class="section-sub">
-      Official website of the Society of American Military Engineers (SAME) student chapter at San Diego State University (SDSU).
+      This is the official website of the Society of American Military Engineers (SAME) student chapter at San Diego State University (SDSU).
     </p>
 
     <div class="grid-3">
@@ -682,13 +684,16 @@
           <div class="top-event-meta">Date: 9/15 • Time: 9AM-4PM • La Jolla</div>
           <div style="margin: 8px 0; height: 1px; background: var(--divider); width: 100%;"></div>
           <p style="margin-top:10px;">
-            Explore networking opportunities with top engineering firms across San Diego! Join us for an exciting day of company visits.
+            Join us for an exciting day of site tours and networking opportunities with engineering firms across San Diego! 
             <br><br>
-            Breakfast & lunch will be provided during the site tours. We will provide carpooling and a career prep workshop prior to the event.
+            Breakfast, lunch, and carpooling will be provided.
+            <br><br>
+            The flyer and details provided are tentative. Please join our Discord for the latest information and updates.
+
           </p>
 
           <div class="top-next-event-btn-wrap">
-            <a class="btn" href="" target="_blank" rel="noopener">Registration Coming Soon</a>
+            <a class="btn" href="https://forms.gle/9TAdC2mtj62BvbHB9" target="_blank" rel="noopener">Register Now!</a>
             <span style="display:inline-block; width:12px;" aria-hidden="true"></span>
             <a class="btn" href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener" aria-label="Join our Discord">Join Discord for Announcements</a>
           </div>
@@ -697,7 +702,7 @@
 
         <div class="next-event-poster">
          
-          <img src="images/posters/career_crawl.png" alt="Flyer Coming Soon">
+          <img src="images/posters/SAME Career Crawl.png" alt="SAME Career Crawl Flyer">
            <!--
           <div class="poster-placeholder">
             Add your event poster here<br>
@@ -722,7 +727,7 @@
 
       <div class="card">
         <h3>Next Event</h3>
-        <div class="event-title">Career Prep Workshop</div>
+        <div class="event-title">Resume Workshop</div>
         
         <span class="pill">Academic</span>
         <span class="pill">Workshop</span>
@@ -731,15 +736,15 @@
         <div class="event-meta">Date: 9/10 • Time: 5:30 - 7:30 PM • TBA</div>
         <hr style="margin: 14px 0; border: none; border-top: 1px solid var(--border);">
         <p style="margin-top:10px;">
-          Join us for a resume workshop to prepare yourself for our Career Crawl!
+          This is also an opportunity to network with industry professionals!
         </p>
-        <a class="btn" href="" target="_blank" rel="noopener">Registration Coming Soon</a>
-        <!--<span class="btn" style="pointer-events: none; opacity: 0.6;">No Registration Needed</span> -->
+        <!--<a class="btn" href="" target="_blank" rel="noopener">Registration Coming Soon</a>-->
+        <span class="btn" style="pointer-events: none; opacity: 0.6;">Registration Coming Soon</span>
       </div>
 
 
       <div class="card">
-        <h3>Upcoming Event</h3>
+        <h3>Next Event</h3>
         <div class="event-title">Group Hike!</div>
        
         <span class="pill">Social</span>
@@ -750,7 +755,7 @@
         <p style="margin-top:10px;">
           Join us for a fun group hike at Cowles Mountain! Carpooling will be provided.
         </p>
-        <a class="btn" href="" target="_blank" rel="noopener">Registration Coming Soon</a>
+        <span class="btn" style="pointer-events: none; opacity: 0.6;">Registration Coming Soon</span>
         <!--<span class="btn" style="pointer-events: none; opacity: 0.6;">No Registration Needed</span> -->
       </div>
 
