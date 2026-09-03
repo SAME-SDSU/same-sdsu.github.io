@@ -180,7 +180,7 @@
 
     .grid-events{
       display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: minmax(0, .9fr) minmax(0, .9fr) minmax(0, 1.2fr);
       gap:14px;
       align-items:stretch;
       max-width: 1040px;
@@ -188,7 +188,28 @@
     }
 
     .past-events-card{
-      grid-column: 1 / -1;
+      grid-column: auto;
+    }
+
+    .grid-events .past-events-card{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .grid-events .past-events-content{
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .grid-events .past-events-copy{
+      padding:0;
+    }
+
+    .grid-events .slideshow{
+      min-height:280px;
+      flex:1;
     }
 
     .card{
@@ -509,7 +530,7 @@
       .top-event-meta{font-size:18px;}
       .next-event-copy p{font-size:16px;}
       .next-event-poster{min-height:280px;}
-      .slideshow{min-height:360px;}
+      .slideshow{min-height:280px;}
     }
 
     .icon{
@@ -615,11 +636,12 @@
     }
     .events-lower-row{
       display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
+      grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
       gap:14px;
       max-width:1040px;
       margin:14px auto 0;
       align-items:stretch;
+      grid-template-rows:repeat(3, minmax(0, 1fr));
     }
     .events-lower-row .luncheon-ad{
       height:100%;
@@ -642,11 +664,59 @@
       margin-top:0;
       padding:14px;
     }
+    .events-lower-row > #luncheons{
+      grid-row:1 / -1;
+    }
+    .benefit-panel{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-height:0;
+      padding:18px 20px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:var(--card);
+      box-shadow:var(--shadow);
+    }
+    .benefit-panel h3{
+      margin:0 0 8px;
+      font-size:18px;
+      line-height:1.2;
+    }
+    .benefit-panel p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
     .events-lower-row .past-events-card{
-      grid-column:auto;
+      grid-column:1 / -1;
       margin:0;
       display:flex;
       flex-direction:column;
+    }
+    .past-events-content{
+      display:grid;
+      grid-template-columns:minmax(180px, .8fr) minmax(0, 1.8fr);
+      gap:18px;
+      align-items:stretch;
+    }
+    .past-events-copy{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:10px 8px;
+    }
+    .past-events-kicker{
+      margin-bottom:8px;
+      color:var(--accent);
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+    }
+    .past-events-copy p{
+      margin:0;
+      color:var(--muted);
     }
     .events-lower-row .slideshow{
       min-height:300px;
@@ -743,9 +813,12 @@
       .support-logo{width:170px; height:104px;}
       .luncheon-ad{grid-template-columns:1fr; padding:18px 14px;}
       .luncheon-details{grid-template-columns:1fr;}
-      .events-lower-row{grid-template-columns:1fr;}
+      .events-lower-row{grid-template-columns:1fr; grid-template-rows:none;}
+      .events-lower-row > #luncheons{grid-row:auto;}
       .events-lower-row .luncheon-details{grid-template-columns:1fr;}
       .events-lower-row .slideshow{min-height:300px;}
+      .past-events-content{grid-template-columns:1fr;}
+      .past-events-copy{padding:0 0 4px;}
     }
   </style>
 </head>
@@ -763,6 +836,7 @@
     <nav>
       <a href="#welcome">About</a>
       <a href="#events">Events</a>
+      <a href="#benefits">Benefits</a>
       <a href="#officers">Officers</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -829,7 +903,7 @@
       <div class="next-event-hero">
         <div class="next-event-copy">
           <h3>Featured Event</h3>
-          <div class="event-title">🧭 Career Crawl Fall 2026</div>
+          <div class="event-title">Career Crawl Fall 2026</div>
           <div class="top-event-meta">Date: 9/15 • Time: 9AM-4PM • La Jolla</div>
           <div style="margin: 8px 0; height: 1px; background: var(--divider); width: 100%;"></div>
           <p style="margin-top:10px;">
@@ -885,7 +959,7 @@
         <div class="event-meta">Date: TBA • Time: 5:30 - 7:30 PM • TBA</div>
         <hr style="margin: 14px 0; border: none; border-top: 1px solid var(--border);">
         <p style="margin-top:10px;">
-          This is an opportunity to network with industry professionals!
+          This is an opportunity to network with industry professionals and recieve feedback on your resume!
         </p>
         <!--<a class="btn" href="" target="_blank" rel="noopener">Registration Coming Soon</a>-->
         <span class="btn" style="pointer-events: none; opacity: 0.6;">Registration Coming Soon</span>
@@ -908,28 +982,52 @@
         <!--<span class="btn" style="pointer-events: none; opacity: 0.6;">No Registration Needed</span> -->
       </div>
 
-      <div class="card">
-        <h3>Next Event</h3>
-        <div class="event-title">📅 TBA</div>
-
-        <span class="pill">Professional</span>
-        <span class="pill">Networking</span>
-
-        <hr style="margin: 14px 0; border: none; border-top: 1px solid var(--border);">
-        <div class="event-meta">Date: TBA • Time: TBA • Location: TBA</div>
-        <hr style="margin: 14px 0; border: none; border-top: 1px solid var(--border);">
-        <p style="margin-top:10px;">
-          Event details and registration information coming soon.
-        </p>
-        <span class="btn" style="pointer-events: none; opacity: 0.6;">Registration Coming Soon</span>
+      <div class="card past-events-card">
+        <h3>Past Events</h3>
+        <div class="past-events-content">
+          <div class="slideshow" aria-label="Past Events Slideshow">
+            <div class="slide active">
+              <img src="images/slideshow/1.jpeg" alt="Golf Social">
+            </div>
+            <div class="slide">
+              <img src="images/slideshow/2.png" alt="Tailgate Social">
+            </div>
+            <div class="slide">
+              <img src="images/slideshow/3.jpg" alt="Interview Workshop">
+            </div>
+            <div class="slide">
+              <img src="images/slideshow/4.png" alt="Bonfire Social">
+            </div>
+            <div class="slide">
+              <img src="images/slideshow/5.png" alt="2025-2026 Officers">
+            </div>
+            <div class="slide">
+              <img src="images/slideshow/6.png" alt="Bowling Social">
+            </div>
+            <div class="slide">
+              <img src="images/slideshow/7.png" alt="Intro Party 2026">
+            </div>
+            <div class="slide-controls">
+              <button class="control" id="prevBtn" type="button">‹ Prev</button>
+              <div class="dots" id="dots"></div>
+              <button class="control" id="nextBtn" type="button">Next ›</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
+
+  <section id="benefits">
+    <h2 class="section-title">Benefits</h2>
+    <p class="section-sub">Check out our benefits and programs!</p>
+
 
     <div class="events-lower-row">
       <section id="luncheons" class="luncheon-section">
         <div class="luncheon-ad">
           <div>
-            <h3>🍽️ Monthly Networking Luncheons</h3>
+            <h3>Monthly Networking Luncheons</h3>
             <p>
               Sign up here to attend our monthly networking luncheons at locations such as Admiral Baker Golf Course. Connect with professionals in the engineering & defense community, and make your next opportunity happen over lunch.
             </p>
@@ -948,46 +1046,29 @@
               </div>
             </div>
           </div>
-
           <div class="luncheon-cta">
-            <p class="luncheon-cta-title">Save your spot!</p>
+            <strong>Save your spot!</strong>
             <p class="luncheon-cta-copy">We will contact you when your spot is available.</p>
             <a class="btn luncheon-btn" href="https://forms.gle/h7pDK9j1B6bur8u89" target="_blank" rel="noopener">Sign Up for Luncheons</a>
           </div>
         </div>
       </section>
 
-      <div class="card past-events-card">
-        <h3>Past Events</h3>
-        <div class="slideshow" aria-label="Past Events Slideshow">
-          <div class="slide active">
-            <img src="images/slideshow/1.jpeg" alt="Golf Social">
-          </div>
-          <div class="slide">
-            <img src="images/slideshow/2.png" alt="Tailgate Social">
-          </div>
-          <div class="slide">
-            <img src="images/slideshow/3.jpg" alt="Interview Workshop">
-          </div>
-          <div class="slide">
-            <img src="images/slideshow/4.png" alt="Bonfire Social">
-          </div>
-          <div class="slide">
-            <img src="images/slideshow/5.png" alt="2025-2026 Officers">
-          </div>
-          <div class="slide">
-            <img src="images/slideshow/6.png" alt="Bowling Social">
-          </div>
-          <div class="slide">
-            <img src="images/slideshow/7.png" alt="Intro Party 2026">
-          </div>
-          <div class="slide-controls">
-            <button class="control" id="prevBtn" type="button">‹ Prev</button>
-            <div class="dots" id="dots"></div>
-            <button class="control" id="nextBtn" type="button">Next ›</button>
-          </div>
-        </div>
-      </div>
+      <section class="benefit-panel">
+        <h3>Scholarship</h3>
+        <p>The SAME San Diego Post 2026 STEM Scholarship opens applications at the end of this year. You must be a SAME member to apply.</p>
+      </section>
+
+      <section class="benefit-panel">
+        <h3>Mentorship Program</h3>
+        <p>Get one-on-one mentorship from experienced professionals. <br> Details in our Discord.</p>
+      </section>
+
+      <section class="benefit-panel">
+        <h3>FE Exam Credentialing Program</h3>
+        <p>Get professional support for the FE Exam and become a licensed engineer-in-training. <br> Details in our Discord.</p>
+      </section>
+
     </div>
   </section>
 
