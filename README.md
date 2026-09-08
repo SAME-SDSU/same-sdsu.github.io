@@ -4,7 +4,6 @@ The official website for the Society of American Military Engineers (SAME) stude
 ### Overview & Features
 This is a static HTML-based website. Features include:
 - Information & social media links.
-- Google Calendar integration.
 - Events showcase and photo slideshow.
 - Light/dark mode toggle with system preference detection.
 - Officer profiles and a collapsible archive of past officers.
@@ -14,7 +13,7 @@ To view locally, clone this repository and double-click `index.html`.
 ### Deploying Changes
 This site is designed to be pushed to GitHub and hosted by GitHub Pages.
 
-Push changes to the [main branch](https://github.com/SAME-SDSU/same-sdsu.github.io) and they will reflect automatically within 1-2 minutes.
+Push changes to the [main branch](https://github.com/SAME-SDSU/same-sdsu.github.io) and they will reflect automatically within <5 minutes.
 
 ### Updating the Site
 
