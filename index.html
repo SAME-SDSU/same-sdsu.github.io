@@ -455,8 +455,13 @@
 
     .officers{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      /* 6 tracks, each card spans 2 = 3 cards per row; lets leftover cards be centered */
+      grid-template-columns: repeat(6, 1fr);
       gap: 14px;
+    }
+
+    .officers > .card{
+      grid-column: span 2;
     }
 
     .officers-wrap{
@@ -480,8 +485,14 @@
       font-size: 14px;
     }
 
-    .center-last{
-      grid-column: 2;
+    /* Single leftover card on the last row */
+    .officers > .center-last{
+      grid-column: 3 / span 2;
+    }
+
+    /* Put on the first of two leftover cards on the last row */
+    .officers > .center-pair{
+      grid-column: 2 / span 2;
     }
 
     .person{
@@ -524,7 +535,7 @@
       .card.top-next-event .next-event-hero{padding-left:0;}
       .officers{grid-template-columns:1fr}
       nav{display:none}
-      .center-last{ grid-column: auto; }
+      .officers > .card{ grid-column: auto; }
       .theme-label{display:none;}
       .next-event-copy .event-title{font-size:26px;}
       .top-event-meta{font-size:18px;}
@@ -965,36 +976,33 @@
 
       <div class="card">
         <h3>Next Event</h3>
-        <div class="event-title">📄 Resume Workshop</div>
-        
-        <span class="pill">Academic</span>
-        <span class="pill">Workshop</span>
-        
+        <div class="event-title">📣 General Body Meeting</div>
+
+        <span class="pill">Meeting</span>
+
         <hr style="margin: 14px 0; border: none; border-top: 1px solid var(--border);">
-        <div class="event-meta">Date: 10/26 • Time: 5:30 - 7:30 PM • HH-150</div>
+        <div class="event-meta">Date: TBD • Time: TBD • Location: TBD</div>
         <hr style="margin: 14px 0; border: none; border-top: 1px solid var(--border);">
         <p style="margin-top:10px;">
-          This is an opportunity to network with industry professionals and receive feedback on your resume!
+          Details coming soon! Join our Discord for the latest updates.
         </p>
-        <a class="btn" href="https://forms.gle/qriKv96SigfTnQA77" target="_blank" rel="noopener">Register Here!</a>
-        <!-- <span class="btn" style="pointer-events: none; opacity: 0.6;">Registration Coming Soon</span> -->
+        <span class="btn" style="pointer-events: none; opacity: 0.6;">Details Coming Soon</span>
       </div>
 
 
       <div class="card">
         <h3>Next Event</h3>
-        <div class="event-title">🎳 STEM Bowling Social</div>
-       
-        <span class="pill">Social</span>
-   
+        <div class="event-title">🍽️ November Luncheon</div>
+
+        <span class="pill">Networking</span>
+
         <hr style="margin: 14px 0; border: none; border-top: 1px solid var(--border);">
-        <div class="event-meta">Date: 10/23 • Time: 4-6 PM • Location: Aztec Lanes @ Student Union</div>
+        <div class="event-meta">Date: TBD • Time: TBD • Location: TBD</div>
         <hr style="margin: 14px 0; border: none; border-top: 1px solid var(--border);">
         <p style="margin-top:10px;">
-          Join us for a fun night of bowling and socializing! Food & drinks will be provided. <br> This is a great opportunity to meet students from other clubs!
+          Details coming soon! Join our Discord for the latest updates.
         </p>
-        <!--<a class="btn" href="https://forms.gle/Nuu5PKyXy6fMVckN7" target="_blank" rel="noopener">Register Now!</a>-->
-        <span class="btn" style="pointer-events: none; opacity: 0.6;">Registration Coming Soon</span>
+        <span class="btn" style="pointer-events: none; opacity: 0.6;">Details Coming Soon</span>
       </div>
 
       <div class="card past-events-card">
@@ -1189,7 +1197,7 @@
             <div class="event-meta">Civil Engineering</div>
           </div>
         </div>
-        <div class="card person center-last">
+        <div class="card person">
           <div class="avatar">
             <img src="images/officers/corbin.png" alt="Corbin Paul">
           </div>
@@ -1197,6 +1205,46 @@
             <div class="role">Membership Chair</div>
             <div class="name">Corbin Paul</div>
             <div class="event-meta">Mechanical Engineering</div>
+          </div>
+        </div>
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/amare.jpg" alt="Amare Phillips">
+          </div>
+          <div>
+            <div class="role">Social Media Chair</div>
+            <div class="name">Amare Phillips</div>
+            <div class="event-meta">Aerospace Engineering</div>
+          </div>
+        </div>
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/devin.jpg" alt="Devin Yarak">
+          </div>
+          <div>
+            <div class="role">Webmaster Chair</div>
+            <div class="name">Devin Yarak</div>
+            <div class="event-meta">Mechanical Engineering</div>
+          </div>
+        </div>
+        <div class="card person center-pair">
+          <div class="avatar">
+            <img src="images/officers/placeholder.svg" alt="Isaac Powell">
+          </div>
+          <div>
+            <div class="role">Vice Treasurer</div>
+            <div class="name">Isaac Powell</div>
+            <div class="event-meta">Aerospace Engineering</div>
+          </div>
+        </div>
+        <div class="card person">
+          <div class="avatar">
+            <img src="images/officers/placeholder.svg" alt="Joah de la Cruz">
+          </div>
+          <div>
+            <div class="role">Expansion Committee Delegate</div>
+            <div class="name">Joah de la Cruz</div>
+            <div class="event-meta">Civil Engineering</div>
           </div>
         </div>
       </div>

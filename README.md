@@ -104,7 +104,12 @@ Adding an officer photo:
 2. Save as `.png` or `.jpg` in `images/officers/`.
 3. Reference the filename in the card's `src` attribute.
 
-If a position is vacant, either omit the card or leave `src` pointing to a placeholder image.
+If a position is vacant or a photo isn't ready yet, either omit the card or set `src` to `images/officers/placeholder.svg`.
+
+Centering a partial last row (the grid shows 3 cards per row):
+- 1 leftover card: add `center-last` to that card's class list, e.g. `class="card person center-last"`.
+- 2 leftover cards: add `center-pair` to the **first** of the two cards only.
+- A full last row needs neither class.
 
 </details>
 
