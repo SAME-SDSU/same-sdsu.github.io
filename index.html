@@ -286,6 +286,55 @@
       background: rgba(255,255,255,.14);
     }
 
+    .contact-card{
+      max-width:540px;
+      margin:0 auto;
+      padding:24px;
+      text-align:center;
+    }
+
+    .contact-brand{
+      width:96px;
+      height:96px;
+      object-fit:contain;
+      margin:0 auto 14px;
+    }
+
+    .contact-card h3{
+      margin-bottom:4px;
+      font-size:22px;
+    }
+
+    .contact-card-copy{
+      margin-bottom:18px !important;
+      color:var(--muted);
+    }
+
+    .contact-social-links{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:10px;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+    }
+
+    .contact-social-links .btn{
+      margin-top:0;
+      width:100%;
+    }
+
+    .contact-email{
+      display:block;
+      width:100%;
+      margin-top:18px;
+      text-align:center;
+    }
+
+    #contact .contact-email{
+      color:var(--text);
+      text-decoration:none;
+    }
+
     .top-next-event{
       margin-bottom: 14px;
     }
@@ -542,6 +591,11 @@
       .next-event-copy p{font-size:16px;}
       .next-event-poster{min-height:280px;}
       .slideshow{min-height:280px;}
+    }
+
+    @media (max-width:520px){
+      .contact-card{padding:20px 16px;}
+      .contact-social-links{grid-template-columns:1fr;}
     }
 
     .icon{
@@ -912,6 +966,8 @@
           <a href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener">Discord</a><br>
           <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           <a href="https://www.instagram.com/same.sdsu/" target="_blank" rel="noopener">Instagram</a><br>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4"></rect><path fill="#fff" d="M6.5 9.5h3v8h-3v-8Zm1.5-4a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM11.5 9.5h2.85v1.1h.04c.4-.7 1.38-1.35 2.85-1.35 3.05 0 3.61 1.57 3.61 3.8v4.45h-3v-3.95c0-.94-.03-2.15-1.95-2.15-1.95 0-2.25 1.02-2.25 2.08v4.02h-3v-8Z"/></svg>
+          <a href="https://www.linkedin.com/company/same-sdsu/" target="_blank" rel="noopener">LinkedIn</a><br>
           <svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
           <a href="https://linktr.ee/samesdsu" target="_blank" rel="noopener">Linktree</a><br>
         </p>
@@ -1390,9 +1446,11 @@
 
 <section id="contact">
   <h2 class="section-title">Contact Information</h2>
-  <div class="card" style="text-align:center; max-width: 470px; margin: 0 auto;">
-    <img src="images/same_chapter.png" alt="SAME chapter logo" style="display:block; width:180px; max-width:100%; height:auto; margin:0 auto 12px;">
-    <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-items:center; margin: -4px 0 8px;">
+  <div class="card contact-card">
+    <img class="contact-brand" src="images/same_chapter.png" alt="SAME chapter logo">
+    <h3>Connect with SAME@SDSU</h3>
+    <p class="contact-card-copy">Follow us, join our community, or reach out directly.</p>
+    <div class="contact-social-links">
       <a class="btn" href="https://discord.gg/8VvfXDQz2u" target="_blank" rel="noopener" aria-label="Join our Discord">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.077 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.076 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z"/></svg>
         Discord
@@ -1403,17 +1461,17 @@
         Instagram
       </a>
 
+      <a class="btn" href="https://www.linkedin.com/company/same-sdsu/" target="_blank" rel="noopener" aria-label="Visit our LinkedIn">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4"></rect><path fill="#fff" d="M6.5 9.5h3v8h-3v-8Zm1.5-4a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM11.5 9.5h2.85v1.1h.04c.4-.7 1.38-1.35 2.85-1.35 3.05 0 3.61 1.57 3.61 3.8v4.45h-3v-3.95c0-.94-.03-2.15-1.95-2.15-1.95 0-2.25 1.02-2.25 2.08v4.02h-3v-8Z"/></svg>
+        LinkedIn
+      </a>
+
       <a class="btn" href="https://linktr.ee/samesdsu" target="_blank" rel="noopener" aria-label="Open our Linktree">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
         Linktree
       </a>
     </div>
-        <!-- <a href="https://forms.gle/4fsay3EvLQmtnhHN9" target="_blank" rel="noopener">Join Our Email Chain!</a> -->
-
-        <a href="mailto:tgheewala4792@sdsu.edu">
-        Email Us!
-      </a>
-    </div>
+    <a class="btn contact-email" href="mailto:tgheewala4792@sdsu.edu">Email Us!</a>
   </div>
 </section>
 
